@@ -1,0 +1,29 @@
+type: bare-command-template
+image: registry.vivo.bj04.xyz/romai_dev/identify-anything/identify-celebrity-tensorrt:11121171-v1_11121171_11121171_1595226400
+filePath: /data/glusterfs_cv_04/11121171/AAAI_NL/Baseline_classification/mmclassification
+dataPath: /data/glusterfs_cv_04/11121171/
+dataPaths:             #dataPaths用于挂载 /data/glusterfs_xxx/public_data/ 目录下的子目录，主要是方便用户或团队之间的文件共享，支持多个路径挂载。
+- /data/glusterfs_cv_04/public_data/imagenet
+
+restartPolicy: Never # OnFailure
+tmpfs: true
+business: hz-cv
+# run:
+#   command: "source activate open-mmlab"
+  
+spec:
+  Worker:
+    num: 1
+    nodes:
+      vivo.com/machine-type: V100
+    limits:
+      gpu: "1"
+      cpu: "10"
+      memory: "50Gi"
+    requests:
+      gpu: "1"
+      cpu: "1"
+      memory: "10Gi"
+      
+      
+      
